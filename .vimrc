@@ -28,7 +28,7 @@ set splitright
 set splitbelow
 " }}}
 "------------------------------------------------------------
-" Vundle / Plugins"{{{
+" Vundle"{{{
 "
 " URL: https://github.com/VundleVim/Vundle.vim
 " Author: Ryan L McIntyre (https://github.com/ryanoasis)
@@ -57,9 +57,18 @@ Plugin 'scrooloose/nerdtree'
 " Vim_Multiple_Cursors: Enables Sublime Text-like multiple selection feature
 Plugin 'terryma/vim-multiple-cursors'
 
+" IndentPython: Corrects for Vim's native autoindent feature
+Plugin 'vim-scripts/indentpython.vim'
+
+" YouCompleteMe: Python autocomplete feature built on top of jedi
+Plugin 'Valloric/YouCompleteMe'
+
+" Syntastic: A popular syntax checker
+Plugin 'scrooloose/syntastic'
+
 " All plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call vundle#end()					" Required
+filetype plugin indent on			" Required
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -85,8 +94,36 @@ au vimenter * NERDTree
 au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "}}}
 "------------------------------------------------------------
+" YouCompleteMe"{{{
+" 
+" URL: https://github.com/Valloric/YouCompleteMe
+" Author: Val Markovic (https://github.com/Valloric)
+" Description: Fuzzy-search code completion engine for Vim. Python
+" functionality is built-in; other languages are available but require plugins
+
+" Ensure autocomplete window disappears once it is no longer in use
+let g:ycm_autoclose_preview_window_after_completion=1
+
+" By default, VIM and YouCompleteMe are not aware of the virtualenv; the
+" following code detects if a virtualenv is running and switches to the active
+" virtualenv with the correct system path so YouCompleteMe finds the right site
+" packages
+py << EOF
+import os
+import sys
+
+if 'VIRTUAL_ENV' in os.environ:
+	project_base_dir = os.environ['VIRTUAL_ENV']
+	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+	execfile(activate_this, dict(__file__=activate_this))
+EOF
+"}}}
+"------------------------------------------------------------
 " Display"{{{
-"
+
+" Enable better syntax highlighting for Python
+let python_highlight_all=1
+
 " Enable syntax highlighting
 syntax on
 
@@ -95,12 +132,15 @@ syntax on
 highlight ColorColumn ctermbg=2 guibg=#2c2d27
 set colorcolumn=80
 
+" Flag excess whitespace
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
 " By default, Vim detects *.md files as Modula-2 files; this line forces all
 " *.md files to be read as markdown
-au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+au BufNewFile,BufRead *.md set filetype=markdown
 " }}}
 "------------------------------------------------------------
-" Must have options {{{
+" Must-Have Options {{{
 "
 " These are highly recommended options.
  
@@ -210,20 +250,21 @@ set notimeout ttimeout timeoutlen=1000 ttimeoutlen=200
 set pastetoggle=<F11>
 " }}}
 "------------------------------------------------------------
-" Indentation options "{{{
+" Indentation Options "{{{
 "
-" Indentation settings according to personal preference.
- 
-" Indentation settings for using 4 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
-" set shiftwidth=4
-" set softtabstop=4
-" set expandtab
- 
 " Indentation settings for using hard tabs for indent. Display tabs as
-" four characters wide.
+" four characters wide for all files, unless otherwise specified
+set encoding=utf-8
 set shiftwidth=4
 set tabstop=4
+set textwidth=79
+set autoindent
+
+" For js, html, and css files, use different indentation options
+au BufNewFile,BufRead *.js, *.html, *.css
+	\ set tabstop=2
+	\ set softtabstop=2
+	\ set shiftwidth=2
 " }}}
 "------------------------------------------------------------
 " Mappings {{{
@@ -274,8 +315,11 @@ nnoremap <Leader>sv :so ~/.vimrc<CR>
 nnoremap <Leader>eb :vs ~/.bashrc<CR>
 nnoremap <Leader>sb :!. ~/.bashrc<CR>
 
-" Install/update plugins via Vundle
+" Install plugins via Vundle
 nnoremap <Leader>vi :PluginInstall<CR>
+
+" Update plugins via Vundle
+nnoremap <Leader>vu :PluginUpdate<CR>
 
 " Toggle line numbers
 nnoremap <Leader>3 :set invnumber<CR>
@@ -308,5 +352,11 @@ map <Leader>b :NERDTreeToggle<CR>
 let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 
+" =============================
+" YouCompleteMe mappings
+" =============================
+
+" Mapping for GoTo Definition
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " }}}
 "------------------------------------------------------------

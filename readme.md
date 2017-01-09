@@ -18,6 +18,9 @@ This vimrc file started off with just basic features and preferences that I wish
 - Vundle
 - NERDTree
 - Vim Multiple Cursors
+- IndentPython
+- YouCompleteMe
+- Syntastic
 
 ###Vundle
 
@@ -30,4 +33,16 @@ NERDTree provides a way for us to explore the file system visually and open file
 ###Vim Multiple Cursors
 
 Vim Multiple Cursors mimics Sublime Text's multiple selection functionality, providing an easy way to refactor code that contains common naming conventions
+
+###IndentPython
+
+Corrects for Vim's native autoindent feature
+
+###YouCompleteMe
+
+Python autocomplete feature built on top of jedi
+
+###Syntastic
+
+A popular syntax checker
 
