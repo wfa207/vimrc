@@ -6,43 +6,6 @@
 "              on this file is still a good idea.
  
 "------------------------------------------------------------
-" Pathogen"{{{
-"
-" URL: https://github.com/tpope/vim-pathogen
-" Author: Tim Pope (https://github.com/tpope)
-" Description: A package manager for vim that ensures all plugins and runtime
-" files have their own private directories
-
-" Execute pathogen's runtime path manipulation
-execute pathogen#infect()
-""}}}
-"------------------------------------------------------------
-" NERDTree"{{{
-"
-" URL: https://github.com/scrooloose/nerdtree
-" Author: Martin Grenfell (https://github.com/scrooloose)
-" Description: NERDTree provides a way for us to explore the file system 
-" visually and open files and directories accordingly.
-
-" Automatically load NERDTree when vim starts up (no file specified)
-autocmd vimenter * NERDTree
-
-" If NERDTree is the only window left, vim will automatically close
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"}}}
-"------------------------------------------------------------
-" Display"{{{
-"
-" Enable syntax highlighting
-syntax on
-
-" Set a marker to denote when a line should break (this is a mere suggestion
-" though)
-highlight ColorColumn ctermbg=2 guibg=#2c2d27
-set colorcolumn=80
-
-" }}}
-"------------------------------------------------------------
 " Features {{{
 "
 " These options and commands enable some very useful features in Vim, that
@@ -55,12 +18,86 @@ set nocompatible
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
-filetype indent plugin on
+" This is required to be 'off' for Vundle, but is turned back on following the
+" end of Vundle
+filetype off
  
 " When splitting windows, I prefer to have the new window towards the right /
 " bottom (depending on how I choose to split) of the active window
 set splitright
 set splitbelow
+" }}}
+"------------------------------------------------------------
+" Vundle / Plugins"{{{
+"
+" URL: https://github.com/VundleVim/Vundle.vim
+" Author: Ryan L McIntyre (https://github.com/ryanoasis)
+" Description: A plugin manager for vim that ensures all plugins and runtime
+" files have their own private directories
+
+" Set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"
+" Alternatively, we can pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" Let Vundle manage Vundle (required)
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Plugins must be kept between vundle#begin/end.
+"
+" ==========================
+" Plugins on GitHub
+" ==========================
+" NERDTree: Explore file system visually as a tree
+Plugin 'scrooloose/nerdtree'
+
+" Vim_Multiple_Cursors: Enables Sublime Text-like multiple selection feature
+Plugin 'terryma/vim-multiple-cursors'
+
+" All plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"}}}
+"------------------------------------------------------------
+" NERDTree"{{{
+"
+" URL: https://github.com/scrooloose/nerdtree
+" Author: Martin Grenfell (https://github.com/scrooloose)
+" Description: NERDTree provides a way for us to explore the file system 
+" visually and open files and directories accordingly.
+
+" Automatically load NERDTree when vim starts up (no file specified)
+au vimenter * NERDTree
+
+" If NERDTree is the only window left, vim will automatically close
+au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"}}}
+"------------------------------------------------------------
+" Display"{{{
+"
+" Enable syntax highlighting
+syntax on
+
+" Set a marker to denote when a line should break (this is a mere suggestion
+" though)
+highlight ColorColumn ctermbg=2 guibg=#2c2d27
+set colorcolumn=80
+
+" By default, Vim detects *.md files as Modula-2 files; this line forces all
+" *.md files to be read as markdown
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 " }}}
 "------------------------------------------------------------
 " Must have options {{{
@@ -167,7 +204,7 @@ set cmdheight=2
 set number
  
 " Quickly time out on keycodes, but never time out on mappings
-set notimeout ttimeout ttimeoutlen=200
+set notimeout ttimeout timeoutlen=1000 ttimeoutlen=200
  
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
@@ -197,7 +234,6 @@ set tabstop=4
 " for subsequent sections
 
 let mapleader=","
-set timeoutlen=1000 ttimeoutlen=10
 
 " Useful mappings
  
@@ -231,19 +267,34 @@ nnoremap <C-W><C-W> :q<CR>
 nnoremap <C-T> :tabnew<CR>
 
 " Open .vimrc file in new window
-nnoremap <Leader>ev :vs ~/.vimrc<CR>
+nnoremap <Leader>ev :vs ~/.vim-config/.vimrc<CR>
 nnoremap <Leader>sv :so ~/.vimrc<CR>
 
 " Open .bashrc file in new window
 nnoremap <Leader>eb :vs ~/.bashrc<CR>
 nnoremap <Leader>sb :!. ~/.bashrc<CR>
 
+" Install/update plugins via Vundle
+nnoremap <Leader>vi :PluginInstall<CR>
+
 " Toggle line numbers
 nnoremap <Leader>3 :set invnumber<CR>
 
-" -----------------------------
+" =============================
+" GitHub mappings
+" =============================
+
+" Add all files to git stage
+nnoremap <Leader>ga :!git add -A<CR>
+
+" Commit files (message must be entered)
+nnoremap <Leader>gm :!git commit -m
+
+" Push changes to github
+nnoremap <Leader>gp :!git push<CR>
+" =============================
 " NERDTree mappings
-" -----------------------------
+" =============================
 
 " Toggle NERDTree menu
 map <Leader>b :NERDTreeToggle<CR>
