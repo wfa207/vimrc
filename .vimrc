@@ -66,6 +66,18 @@ Plugin 'Valloric/YouCompleteMe'
 " Syntastic: A popular syntax checker
 Plugin 'scrooloose/syntastic'
 
+" CtrlP: Full-path fuzzy file, buffer, mru, tab... finder for Vim
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" Airline: A more informative status bar (current venv, git branch, etc.)
+Plugin 'vim-airline/vim-airline'
+
+" Airline_themes: Themes for the Airline plugin
+Plugin 'vim-airline/vim-airline-themes'
+
+" Solarized_Theme: Theme developed by Ethan Schoonover
+Plugin 'altercation/vim-colors-solarized'
+
 " All plugins must be added before the following line
 call vundle#end()					" Required
 filetype plugin indent on			" Required
@@ -121,6 +133,23 @@ EOF
 "------------------------------------------------------------
 " Display"{{{
 
+" Colorscheme
+set background=dark
+colorscheme solarized
+
+" =============================
+" Airline Configuration
+" =============================
+
+" Enable Powerline fonts for more aesthetic appearance
+let g:airline_powerline_fonts=1
+
+" Smarter tab line allows for display of buffers
+let g:airline#extensions#tabline#enabled=1
+
+" Airline theme
+let g:airline_theme='solarized'
+
 " Enable better syntax highlighting for Python
 let python_highlight_all=1
 
@@ -129,8 +158,11 @@ syntax on
 
 " Set a marker to denote when a line should break (this is a mere suggestion
 " though)
-highlight ColorColumn ctermbg=2 guibg=#2c2d27
+highlight ColorColumn ctermbg=4 guibg=#2c2d27
 set colorcolumn=80
+
+" Highlight line that the cursor is currently on
+set cursorline
 
 " Flag excess whitespace
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
@@ -246,6 +278,9 @@ set number
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout timeoutlen=1000 ttimeoutlen=200
  
+" Have Vim share its clipboard with the system clipboard
+set clipboard=unnamed
+
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
 " }}}
