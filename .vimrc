@@ -69,13 +69,14 @@ Plugin 'scrooloose/syntastic'
 " CtrlP: Full-path fuzzy file, buffer, mru, tab... finder for Vim
 Plugin 'ctrlpvim/ctrlp.vim'
 
-" Powerline: A more informative status bar (current venv, git branch, etc.)
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Airline: A more informative status bar (current venv, git branch, etc.)
+Plugin 'vim-airline/vim-airline'
 
-" Nord_Theme: A color theme based on the Nord color palette; note this requires
-" the terminal to be loaded with the associated theme (iTerm2:
-" https://github.com/arcticicestudio/nord-iterm2)
-Plugin 'arcticicestudio/nord-vim'
+" Airline_themes: Themes for the Airline plugin
+Plugin 'vim-airline/vim-airline-themes'
+
+" Solarized_Theme: Theme developed by Ethan Schoonover
+Plugin 'altercation/vim-colors-solarized'
 
 " All plugins must be added before the following line
 call vundle#end()					" Required
@@ -133,7 +134,21 @@ EOF
 " Display"{{{
 
 " Colorscheme
-colorscheme nord
+set background=dark
+colorscheme solarized
+
+" =============================
+" Airline Configuration
+" =============================
+
+" Enable Powerline fonts for more aesthetic appearance
+let g:airline_powerline_fonts=1
+
+" Smarter tab line allows for display of buffers
+let g:airline#extensions#tabline#enabled=1
+
+" Airline theme
+let g:airline_theme='solarized'
 
 " Enable better syntax highlighting for Python
 let python_highlight_all=1
