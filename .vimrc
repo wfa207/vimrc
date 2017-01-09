@@ -66,6 +66,17 @@ Plugin 'Valloric/YouCompleteMe'
 " Syntastic: A popular syntax checker
 Plugin 'scrooloose/syntastic'
 
+" CtrlP: Full-path fuzzy file, buffer, mru, tab... finder for Vim
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" Powerline: A more informative status bar (current venv, git branch, etc.)
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+" Nord_Theme: A color theme based on the Nord color palette; note this requires
+" the terminal to be loaded with the associated theme (iTerm2:
+" https://github.com/arcticicestudio/nord-iterm2)
+Plugin 'arcticicestudio/nord-vim'
+
 " All plugins must be added before the following line
 call vundle#end()					" Required
 filetype plugin indent on			" Required
@@ -121,6 +132,9 @@ EOF
 "------------------------------------------------------------
 " Display"{{{
 
+" Colorscheme
+colorscheme nord
+
 " Enable better syntax highlighting for Python
 let python_highlight_all=1
 
@@ -129,8 +143,11 @@ syntax on
 
 " Set a marker to denote when a line should break (this is a mere suggestion
 " though)
-highlight ColorColumn ctermbg=2 guibg=#2c2d27
+highlight ColorColumn ctermbg=4 guibg=#2c2d27
 set colorcolumn=80
+
+" Highlight line that the cursor is currently on
+set cursorline
 
 " Flag excess whitespace
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
@@ -246,6 +263,9 @@ set number
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout timeoutlen=1000 ttimeoutlen=200
  
+" Have Vim share its clipboard with the system clipboard
+set clipboard=unnamed
+
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
 " }}}

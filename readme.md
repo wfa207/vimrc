@@ -21,6 +21,7 @@ This vimrc file started off with just basic features and preferences that I wish
 - IndentPython
 - YouCompleteMe
 - Syntastic
+- CtrlP
 
 ###Vundle
 
@@ -46,3 +47,6 @@ Python autocomplete feature built on top of jedi
 
 A popular syntax checker
 
+###CtrlP
+
+A fuzzy search plugin that can search through files, buffers, etc.
