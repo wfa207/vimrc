@@ -165,8 +165,7 @@ set colorcolumn=80
 set cursorline
 
 " Flag excess whitespace
-
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " By default, Vim detects *.md files as Modula-2 files; this line forces all
 " *.md files to be read as markdown
