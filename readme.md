@@ -19,6 +19,7 @@ This vimrc file started off with just basic features and preferences that I wish
 ##Currently Used Plugins
 - Vundle
 - NERDTree
+- NERDCommenter
 - Vim Multiple Cursors
 - IndentPython
 - YouCompleteMe
@@ -28,11 +29,15 @@ This vimrc file started off with just basic features and preferences that I wish
 
 ###[Vundle](https://github.com/VundleVim/Vundle.vim)
 
-Vundle is an extension manager, based on Pathogen, for vim that ensures all plugins and runtime files have their own private directories.
+Vundle is an extension manager, based on Pathogen, for Vim that ensures all plugins and runtime files have their own private directories.
 
 ###[NERDTree](https://github.com/scrooloose/nerdtree)
 
 NERDTree provides a way for us to explore the file system visually and open files and directories accordingly.
+
+###[NERDCommenter](https://github.com/scrooloose/nerdcommenter)
+
+NERDCommenter provides easier commenting in Vim with hotkeys
 
 ###[Vim Multiple Cursors](https://github.com/terryma/vim-multiple-cursors)
 
