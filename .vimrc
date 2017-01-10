@@ -419,6 +419,13 @@ let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 
 " =============================
+" NERDCommenter mappings
+" =============================
+
+" Toggle comment
+map <Leader>  <plug>NERDCommenterToggle
+
+" =============================
 " YouCompleteMe mappings
 " =============================
 
