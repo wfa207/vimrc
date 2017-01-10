@@ -5,7 +5,7 @@
 "              If you're a more advanced user, building your own .vimrc based
 "              on this file is still a good idea.
 
-"------------------------------------------------------------
+" -----------------------------------------------------------
 " Features {{{
 
 " These options and commands enable some very useful features in Vim, that
@@ -18,8 +18,8 @@ set nocompatible
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
-" This is required to be 'off' for Vundle, but is turned back on following the
-" end of Vundle
+" This is required to be 'off' for Vundle, but is turned back on after Vundle
+" finishes running
 filetype off
 
 " When splitting windows, I prefer to have the new window towards the right /
@@ -27,7 +27,7 @@ filetype off
 set splitright
 set splitbelow
 " }}}
-"------------------------------------------------------------
+" -----------------------------------------------------------
 " Vundle"{{{
 
 " URL: https://github.com/VundleVim/Vundle.vim
@@ -69,6 +69,9 @@ Plugin 'scrooloose/syntastic'
 " CtrlP: Full-path fuzzy file, buffer, mru, tab... finder for Vim
 Plugin 'ctrlpvim/ctrlp.vim'
 
+" NERDCommenter: Allows for easy commenting in Vim
+Plugin 'scrooloose/nerdcommenter'
+
 " Airline: A more informative status bar (current venv, git branch, etc.)
 Plugin 'vim-airline/vim-airline'
 
@@ -91,7 +94,7 @@ filetype plugin indent on			" Required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "}}}
-"------------------------------------------------------------
+" -----------------------------------------------------------
 " NERDTree"{{{
 
 " URL: https://github.com/scrooloose/nerdtree
@@ -99,13 +102,37 @@ filetype plugin indent on			" Required
 " Description: NERDTree provides a way for us to explore the file system
 " visually and open files and directories accordingly.
 
-" Automatically load NERDTree when vim starts up (no file specified)
-au vimenter * NERDTree
+" Start NERDTree automatically when vim starts up with no files specified
+au StdinReadPre * let s:std_in=1
+au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Start NERDTree automatically when vim starts up on a directory
+au StdinReadPre * let s:std_in=1
+au VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " If NERDTree is the only window left, vim will automatically close
 au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "}}}
-"------------------------------------------------------------
+" -----------------------------------------------------------
+" NERDCommenter"{{{
+
+" URL: https://github.com/scrooloose/nerdcommenter
+" Author: Martin Grenfell (https://github.com/scrooloose)
+" Description: NERDCommenter provides automatic commenting capabilities in Vim
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+"}}}
+" -----------------------------------------------------------
 " YouCompleteMe"{{{
 
 " URL: https://github.com/Valloric/YouCompleteMe
@@ -130,7 +157,7 @@ if 'VIRTUAL_ENV' in os.environ:
 	execfile(activate_this, dict(__file__=activate_this))
 EOF
 "}}}
-"------------------------------------------------------------
+" -----------------------------------------------------------
 " Display"{{{
 
 " Colorscheme
@@ -175,7 +202,7 @@ match ExtraWhitespace /\s\+$/
 " *.md files to be read as markdown
 au BufNewFile,BufRead *.md set filetype=markdown
 " }}}
-"------------------------------------------------------------
+" -----------------------------------------------------------
 " Must-Have Options {{{
 
 " These are highly recommended options.
@@ -226,7 +253,7 @@ set incsearch
 " with others
 set foldmethod=marker
 " }}}
-"------------------------------------------------------------
+" -----------------------------------------------------------
 " Usability options {{{
 
 " These are options that users frequently set in their .vimrc. Some of them
@@ -288,7 +315,7 @@ set clipboard=unnamed
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
 " }}}
-"------------------------------------------------------------
+" -----------------------------------------------------------
 " Indentation Options "{{{
 
 " Indentation settings for using hard tabs for indent. Display tabs as
@@ -305,7 +332,7 @@ au BufNewFile,BufRead *.js, *.html, *.css
 	\ set softtabstop=2
 	\ set shiftwidth=2
 " }}}
-"------------------------------------------------------------
+" -----------------------------------------------------------
 " Mappings {{{
 
 " Mapleader mapping -- determines what the leader is (until it is redefined)
@@ -398,4 +425,4 @@ let g:NERDTreeMapJumpPrevSibling=''
 " Mapping for GoTo Definition
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " }}}
-"------------------------------------------------------------
+" -----------------------------------------------------------
