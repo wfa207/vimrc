@@ -4,24 +4,24 @@
 "              newbie, basing your first .vimrc on this file is a good choice.
 "              If you're a more advanced user, building your own .vimrc based
 "              on this file is still a good idea.
- 
+
 "------------------------------------------------------------
 " Features {{{
-"
+
 " These options and commands enable some very useful features in Vim, that
 " no user should have to live without.
- 
+
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
- 
+
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
 " This is required to be 'off' for Vundle, but is turned back on following the
 " end of Vundle
 filetype off
- 
+
 " When splitting windows, I prefer to have the new window towards the right /
 " bottom (depending on how I choose to split) of the active window
 set splitright
@@ -29,7 +29,7 @@ set splitbelow
 " }}}
 "------------------------------------------------------------
 " Vundle"{{{
-"
+
 " URL: https://github.com/VundleVim/Vundle.vim
 " Author: Ryan L McIntyre (https://github.com/ryanoasis)
 " Description: A plugin manager for vim that ensures all plugins and runtime
@@ -38,7 +38,7 @@ set splitbelow
 " Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-"
+
 " Alternatively, we can pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -47,7 +47,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Plugins must be kept between vundle#begin/end.
-"
+
 " ==========================
 " Plugins on GitHub
 " ==========================
@@ -87,16 +87,16 @@ filetype plugin indent on			" Required
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
+
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "}}}
 "------------------------------------------------------------
 " NERDTree"{{{
-"
+
 " URL: https://github.com/scrooloose/nerdtree
 " Author: Martin Grenfell (https://github.com/scrooloose)
-" Description: NERDTree provides a way for us to explore the file system 
+" Description: NERDTree provides a way for us to explore the file system
 " visually and open files and directories accordingly.
 
 " Automatically load NERDTree when vim starts up (no file specified)
@@ -107,7 +107,7 @@ au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTre
 "}}}
 "------------------------------------------------------------
 " YouCompleteMe"{{{
-" 
+
 " URL: https://github.com/Valloric/YouCompleteMe
 " Author: Val Markovic (https://github.com/Valloric)
 " Description: Fuzzy-search code completion engine for Vim. Python
@@ -147,6 +147,9 @@ let g:airline_powerline_fonts=1
 " Smarter tab line allows for display of buffers
 let g:airline#extensions#tabline#enabled=1
 
+" Allow space after tabs but no in between them
+let g:airline#extensions#whitespace#mixed_indent_algo=1
+
 " Airline theme
 let g:airline_theme='solarized'
 
@@ -158,14 +161,15 @@ syntax on
 
 " Set a marker to denote when a line should break (this is a mere suggestion
 " though)
-highlight ColorColumn ctermbg=23 guibg=#2c2d27
+highlight ColorColumn ctermbg=23 guibg=#005f5f
 set colorcolumn=80
 
 " Highlight line that the cursor is currently on
 set cursorline
 
 " Flag excess whitespace
-"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+highlight ExtraWhitespace ctermbg=190 guibg=#dfff00
+match ExtraWhitespace /\s\+$/
 
 " By default, Vim detects *.md files as Modula-2 files; this line forces all
 " *.md files to be read as markdown
@@ -173,14 +177,14 @@ au BufNewFile,BufRead *.md set filetype=markdown
 " }}}
 "------------------------------------------------------------
 " Must-Have Options {{{
-"
+
 " These are highly recommended options.
- 
+
 " Vim with default settings does not allow easy switching between multiple files
 " in the same editor window. Users can use multiple split windows or multiple
 " tab pages to edit multiple files, but it is still best to enable an option to
 " allow easier switching between files.
-"
+
 " One such option is the 'hidden' option, which allows you to re-use the same
 " window and switch from an unsaved buffer without saving it first. Also allows
 " you to keep an undo history for multiple files when re-using the same window
@@ -190,7 +194,7 @@ au BufNewFile,BufRead *.md set filetype=markdown
 " try to quit without saving, and swap files will keep you safe if your computer
 " crashes.
 set hidden
- 
+
 " Note that not everyone likes working this way (with the hidden option).
 " Alternatives include using tabs or split windows instead of re-using the same
 " window as mentioned above, and/or either of the following options:
@@ -198,20 +202,20 @@ set hidden
 " options" section
 " set confirm
 " set autowriteall
- 
+
 " Better command-line completion
 set wildmenu
- 
+
 " Show partial commands in the last line of the screen
 set showcmd
- 
+
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
 set hlsearch
 
 " Search as you type
 set incsearch
- 
+
 " Modelines have historically been a source of security vulnerabilities. As
 " such, it may be a good idea to disable them and use the securemodelines
 " script, <http://www.vim.org/scripts/script.php?script_id=1876>.
@@ -224,60 +228,60 @@ set foldmethod=marker
 " }}}
 "------------------------------------------------------------
 " Usability options {{{
-"
+
 " These are options that users frequently set in their .vimrc. Some of them
 " change Vim's behaviour in ways which deviate from the true Vi way, but
 " which are considered to add usability. Which, if any, of these options to
 " use is very much a personal preference, but they are harmless.
- 
+
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
- 
+
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
- 
+
 " When opening a new line and no filetype-specific indenting is enabled, keep
 " the same indent as the line you're currently on. Useful for READMEs, etc.
 set autoindent
- 
+
 " Stop certain movements from always going to the first character of a line.
 " While this behaviour deviates from that of Vi, it does what most users
 " coming from other editors would expect.
 set nostartofline
- 
+
 " Display the cursor position on the last line of the screen or in the status
 " line of a window
 set ruler
- 
+
 " Always display the status line, even if only one window is displayed
 set laststatus=2
- 
+
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
 set confirm
- 
+
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
- 
+
 " And reset the terminal code for the visual bell. If visualbell is set, and
 " this line is also included, vim will neither flash nor beep. If visualbell
 " is unset, this does nothing.
 set t_vb=
- 
+
 " Enable use of the mouse for all modes
 set mouse=a
- 
+
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
 set cmdheight=2
- 
+
 " Display line numbers on the left
 set number
- 
+
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout timeoutlen=1000 ttimeoutlen=200
- 
+
 " Have Vim share its clipboard with the system clipboard
 set clipboard=unnamed
 
@@ -286,7 +290,7 @@ set pastetoggle=<F11>
 " }}}
 "------------------------------------------------------------
 " Indentation Options "{{{
-"
+
 " Indentation settings for using hard tabs for indent. Display tabs as
 " four characters wide for all files, unless otherwise specified
 set encoding=utf-8
@@ -312,7 +316,7 @@ au BufNewFile,BufRead *.js, *.html, *.css
 let mapleader=","
 
 " Useful mappings
- 
+
 " Map <C-C> (redraw screen) to also turn off search highlighting until the
 " next search
 nnoremap <silent> <C-C> :nohl<CR><C-L><C-C>
