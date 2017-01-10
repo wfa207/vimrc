@@ -158,13 +158,14 @@ syntax on
 
 " Set a marker to denote when a line should break (this is a mere suggestion
 " though)
-highlight ColorColumn ctermbg=4 guibg=#2c2d27
+highlight ColorColumn ctermbg=23 guibg=#2c2d27
 set colorcolumn=80
 
 " Highlight line that the cursor is currently on
 set cursorline
 
 " Flag excess whitespace
+
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " By default, Vim detects *.md files as Modula-2 files; this line forces all
