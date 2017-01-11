@@ -158,6 +158,12 @@ if 'VIRTUAL_ENV' in os.environ:
 EOF
 "}}}
 " -----------------------------------------------------------
+" Vim Multiple Cursor"{{{
+
+let g:multi_cursor_exit_from_visual_mode=0
+let g:multi_cursor_exit_from_insert_mode=0
+" }}}
+" -----------------------------------------------------------
 " Display"{{{
 
 " Colorscheme
@@ -323,7 +329,6 @@ set pastetoggle=<F11>
 set encoding=utf-8
 set shiftwidth=4
 set tabstop=4
-set textwidth=79
 set autoindent
 
 " For js, html, and css files, use different indentation options
@@ -430,6 +435,6 @@ map <Leader>  <plug>NERDCommenterToggle
 " =============================
 
 " Mapping for GoTo Definition
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>gd  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " }}}
 " -----------------------------------------------------------
