@@ -72,6 +72,12 @@ Plugin 'ctrlpvim/ctrlp.vim'
 " NERDCommenter: Allows for easy commenting in Vim
 Plugin 'scrooloose/nerdcommenter'
 
+" Ack: File-search plugin for Vim
+Plugin 'mileszs/ack.vim'
+
+" Vim_Tmux_Navigator: Easier navigation between Vim and Tmux (without prefix)
+Plugin 'christoomey/vim-tmux-navigator'
+
 " Airline: A more informative status bar (current venv, git branch, etc.)
 Plugin 'vim-airline/vim-airline'
 
@@ -157,6 +163,13 @@ if 'VIRTUAL_ENV' in os.environ:
 	execfile(activate_this, dict(__file__=activate_this))
 EOF
 "}}}
+" -----------------------------------------------------------
+" Ack / Silver Searcher"{{{
+
+if executable('ag')
+	let g:ackprg='ag --vimgrep'
+endif
+" }}}
 " -----------------------------------------------------------
 " Vim Multiple Cursor"{{{
 
@@ -317,6 +330,9 @@ set notimeout ttimeout timeoutlen=1000 ttimeoutlen=200
 
 " Have Vim share its clipboard with the system clipboard
 set clipboard=unnamed
+if $TMUX == ''
+	set clipboard+=unnamed
+endif
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
@@ -328,6 +344,7 @@ set pastetoggle=<F11>
 " four characters wide for all files, unless otherwise specified
 set encoding=utf-8
 set shiftwidth=4
+set textwidth=80
 set tabstop=4
 set autoindent
 
@@ -347,7 +364,25 @@ au BufNewFile,BufRead *.js, *.html, *.css
 
 let mapleader=","
 
+" =============================
+" Quick Access Files
+" =============================
+"
+" Open .vimrc file in new window
+nnoremap <Leader>ev :vs ~/.vimrc<CR>
+nnoremap <Leader>sv :so ~/.vimrc<CR>
+
+" Open .bashrc file in new window
+nnoremap <Leader>eb :vs ~/.bashrc<CR>
+nnoremap <Leader>sb :!. ~/.bashrc<CR>
+
+" Open .tmux.conf file in new window
+nnoremap <Leader>et :vs ~/.tmux.conf<CR>
+nnoremap <Leader>st :so ~/.tmux.conf<CR>
+
+" =============================
 " Useful mappings
+" =============================
 
 " Map <C-C> (redraw screen) to also turn off search highlighting until the
 " next search
@@ -377,14 +412,6 @@ nnoremap <C-W><C-W> :q<CR>
 
 " Open a new tab
 nnoremap <C-T> :tabnew<CR>
-
-" Open .vimrc file in new window
-nnoremap <Leader>ev :vs ~/.vim-config/.vimrc<CR>
-nnoremap <Leader>sv :so ~/.vimrc<CR>
-
-" Open .bashrc file in new window
-nnoremap <Leader>eb :vs ~/.bashrc<CR>
-nnoremap <Leader>sb :!. ~/.bashrc<CR>
 
 " Install plugins via Vundle
 nnoremap <Leader>vi :PluginInstall<CR>
@@ -416,8 +443,8 @@ map <Leader>b :NERDTreeToggle<CR>
 
 " NERDTree split mappings are a bit counterintuitive (I decided to change them
 " to v and s for vertical and horizontal split, respectively)
-"let g:NERDTreeMapOpenSplit='s'
-"let g:NERDTreeMapOpenVSplit='v'
+let g:NERDTreeMapOpenSplit='h'
+let g:NERDTreeMapOpenVSplit='v'
 
 " Unmap Jump to Sibling to prevent overriding of bindings above
 let g:NERDTreeMapJumpNextSibling=''
@@ -435,6 +462,12 @@ map <Leader>  <plug>NERDCommenterToggle
 " =============================
 
 " Mapping for GoTo Definition
-map <leader>gd  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <Leader>gd  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"
+" =============================
+" Ack / Silver Searcher mappings
+" =============================
+" Shortcut to access Ack; trailing space needed
+nnoremap <Leader>fa :Ack 
 " }}}
 " -----------------------------------------------------------
