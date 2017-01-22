@@ -7,9 +7,16 @@
 
 " -----------------------------------------------------------
 " Features {{{
-
+"
 " These options and commands enable some very useful features in Vim, that
 " no user should have to live without.
+
+" Mapleader mapping -- determines what the leader is (until it is redefined)
+" Note that we can effectively have 'cascading' leader mappings - i.e. certain
+" sections of our mappings can use one leader, then we redefine the mapleader
+" for subsequent sections
+
+let mapleader=","
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -33,7 +40,7 @@ set splitbelow
 " URL: https://github.com/VundleVim/Vundle.vim
 " Author: Ryan L McIntyre (https://github.com/ryanoasis)
 " Description: A plugin manager for vim that ensures all plugins and runtime
-" files have their own private directories
+" 			   files have their own private directories
 
 " Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -54,6 +61,9 @@ Plugin 'VundleVim/Vundle.vim'
 " NERDTree: Explore file system visually as a tree
 Plugin 'scrooloose/nerdtree'
 
+" NERDCommenter: Allows for easy commenting in Vim
+Plugin 'scrooloose/nerdcommenter'
+
 " Vim_Multiple_Cursors: Enables Sublime Text-like multiple selection feature
 Plugin 'terryma/vim-multiple-cursors'
 
@@ -69,11 +79,18 @@ Plugin 'scrooloose/syntastic'
 " CtrlP: Full-path fuzzy file, buffer, mru, tab... finder for Vim
 Plugin 'ctrlpvim/ctrlp.vim'
 
-" NERDCommenter: Allows for easy commenting in Vim
-Plugin 'scrooloose/nerdcommenter'
-
 " Ack: File-search plugin for Vim
 Plugin 'mileszs/ack.vim'
+
+" Supertab: Supertab is a vim plugin which allows you to use <Tab> for all
+" your insert completion needs
+Plugin 'ervandew/supertab'
+
+" UltiSnips: Allows usage of snippets in Vim
+Plugin 'SirVer/ultisnips'
+
+" Vim_Snippets: Collection of snippets (used with UltiSnips)
+Plugin 'honza/vim-snippets'
 
 " Vim_Tmux_Navigator: Easier navigation between Vim and Tmux (without prefix)
 Plugin 'christoomey/vim-tmux-navigator'
@@ -99,6 +116,12 @@ filetype plugin indent on			" Required
 
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 "}}}
 " -----------------------------------------------------------
 " NERDTree"{{{
@@ -106,7 +129,7 @@ filetype plugin indent on			" Required
 " URL: https://github.com/scrooloose/nerdtree
 " Author: Martin Grenfell (https://github.com/scrooloose)
 " Description: NERDTree provides a way for us to explore the file system
-" visually and open files and directories accordingly.
+" 			   visually and open files and directories accordingly.
 
 " Start NERDTree automatically when vim starts up with no files specified
 au StdinReadPre * let s:std_in=1
@@ -118,6 +141,21 @@ au VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | 
 
 " If NERDTree is the only window left, vim will automatically close
 au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Have NERDTree show hidden files by default
+let NERDTreeShowHidden=1
+"
+" Toggle NERDTree menu
+map <Leader>b :NERDTreeToggle<CR>
+
+" NERDTree split mappings are a bit counterintuitive (I decided to change them
+" to v and s for vertical and horizontal split, respectively)
+let g:NERDTreeMapOpenSplit='h'
+let g:NERDTreeMapOpenVSplit='v'
+
+" Unmap Jump to Sibling to prevent overriding of bindings above
+let g:NERDTreeMapJumpNextSibling=''
+let g:NERDTreeMapJumpPrevSibling=''
 "}}}
 " -----------------------------------------------------------
 " NERDCommenter"{{{
@@ -137,6 +175,9 @@ let g:NERDDefaultAlign = 'left'
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+
+" Toggle comment
+map <Leader>  <plug>NERDCommenterToggle
 "}}}
 " -----------------------------------------------------------
 " YouCompleteMe"{{{
@@ -144,7 +185,8 @@ let g:NERDTrimTrailingWhitespace = 1
 " URL: https://github.com/Valloric/YouCompleteMe
 " Author: Val Markovic (https://github.com/Valloric)
 " Description: Fuzzy-search code completion engine for Vim. Python
-" functionality is built-in; other languages are available but require plugins
+" 			   functionality is built-in; other languages are available but
+" 			   require plugins
 
 " Ensure autocomplete window disappears once it is no longer in use
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -162,14 +204,71 @@ if 'VIRTUAL_ENV' in os.environ:
 	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
 	execfile(activate_this, dict(__file__=activate_this))
 EOF
+
+" Mapping for GoTo Definition
+map <Leader>gd  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Select next completion
+let g:ycm_key_list_select_completion = ['<C-J>', '<Down>']
+
+" Select previous completion
+let g:ycm_key_list_previous_completion = ['<C-K>', '<Up>']
+"}}}
+" -----------------------------------------------------------
+" Syntastic"{{{
+
+" URL: https://github.com/vim-syntastic/syntastic
+" Author: Martin Grenfell (https://github.com/scrooloose)
+" Description: Syntax checker plugin
+
+" Default settings recommended by syntastic contributors
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 "}}}
 " -----------------------------------------------------------
 " Ack / Silver Searcher"{{{
 
+" URL: https://github.com/mileszs/ack.vim
+" Author: Miles Z. Sterrett (https://github.com/mileszs)
+" Description: Allows users to run their favorite search tool from Vim,
+" 			   with an enhanced results list
+
 if executable('ag')
 	let g:ackprg='ag --vimgrep'
 endif
+
+" Shortcut to access Ack; trailing space needed
+nnoremap <Leader>fa :Ack 
 " }}}
+" -----------------------------------------------------------
+" SuperTab"{{{
+
+" URL: https://github.com/ervandew/supertab
+" Author: Eric Van Dewoestine (https://github.com/ervandew)
+" Description: Supertab is a vim plugin which allows you to use <Tab> for all
+"			   your insert completion needs
+
+" Supertab's default completion selection should be YouCompleteMe's
+let g:SuperTabDefaultCompletionType = '<C-J>'
+"}}}
+" -----------------------------------------------------------
+" UltiSnips"{{{
+
+" URL: https://github.com/SirVer/ultisnips
+" Author: Holger Rapp (https://github.com/SirVer)
+" Description: UltiSnips provides snippets in Vim
+
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<C-J>"
+let g:UltiSnipsJumpBackwardTrigger="<C-K>"
+"}}}
 " -----------------------------------------------------------
 " Vim Multiple Cursor"{{{
 
@@ -330,9 +429,6 @@ set notimeout ttimeout timeoutlen=1000 ttimeoutlen=200
 
 " Have Vim share its clipboard with the system clipboard
 set clipboard=unnamed
-if $TMUX == ''
-	set clipboard+=unnamed
-endif
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
@@ -344,7 +440,7 @@ set pastetoggle=<F11>
 " four characters wide for all files, unless otherwise specified
 set encoding=utf-8
 set shiftwidth=4
-set textwidth=80
+set textwidth=159
 set tabstop=4
 set autoindent
 
@@ -356,13 +452,6 @@ au BufNewFile,BufRead *.js, *.html, *.css
 " }}}
 " -----------------------------------------------------------
 " Mappings {{{
-
-" Mapleader mapping -- determines what the leader is (until it is redefined)
-" Note that we can effectively have 'cascading' leader mappings - i.e. certain
-" sections of our mappings can use one leader, then we redefine the mapleader
-" for subsequent sections
-
-let mapleader=","
 
 " =============================
 " Quick Access Files
@@ -388,24 +477,6 @@ nnoremap <Leader>st :so ~/.tmux.conf<CR>
 " next search
 nnoremap <silent> <C-C> :nohl<CR><C-L><C-C>
 
-" Window movement mappings
-
-" Move cursor to window immediately adjacent to (hjkl control direction) active
-" window
-nnoremap <C-J> :wincmd j<CR>
-nnoremap <C-K> :wincmd k<CR>
-nnoremap <C-H> :wincmd h<CR>
-nnoremap <C-L> :wincmd l<CR>
-
-" Move window to furthest in the indicated direction (controlled by hjkl)
-nnoremap <C-W><C-J> :wincmd J<CR>
-nnoremap <C-W><C-K> :wincmd K<CR>
-nnoremap <C-W><C-H> :wincmd H<CR>
-nnoremap <C-W><C-L> :wincmd L<CR>
-
-" Split window horizontally (native <C-W><C-S> not functioning properly)
-nnoremap <C-W><C-E> :sp<CR>
-
 " Close a window (similar to most other tabbed programs, but press ctrl+W
 " twice)
 nnoremap <C-W><C-W> :q<CR>
@@ -422,6 +493,9 @@ nnoremap <Leader>vu :PluginUpdate<CR>
 " Toggle line numbers
 nnoremap <Leader>3 :set invnumber<CR>
 
+" Ensure Enter inserts new line
+imap <CR> <CR>
+
 " =============================
 " GitHub mappings
 " =============================
@@ -434,40 +508,5 @@ nnoremap <Leader>gm :!git commit -m
 
 " Push changes to github
 nnoremap <Leader>gp :!git push<CR>
-" =============================
-" NERDTree mappings
-" =============================
-
-" Toggle NERDTree menu
-map <Leader>b :NERDTreeToggle<CR>
-
-" NERDTree split mappings are a bit counterintuitive (I decided to change them
-" to v and s for vertical and horizontal split, respectively)
-let g:NERDTreeMapOpenSplit='h'
-let g:NERDTreeMapOpenVSplit='v'
-
-" Unmap Jump to Sibling to prevent overriding of bindings above
-let g:NERDTreeMapJumpNextSibling=''
-let g:NERDTreeMapJumpPrevSibling=''
-
-" =============================
-" NERDCommenter mappings
-" =============================
-
-" Toggle comment
-map <Leader>  <plug>NERDCommenterToggle
-
-" =============================
-" YouCompleteMe mappings
-" =============================
-
-" Mapping for GoTo Definition
-map <Leader>gd  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"
-" =============================
-" Ack / Silver Searcher mappings
-" =============================
-" Shortcut to access Ack; trailing space needed
-nnoremap <Leader>fa :Ack 
 " }}}
 " -----------------------------------------------------------
