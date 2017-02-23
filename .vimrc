@@ -305,8 +305,7 @@ let python_highlight_all=1
 " Enable syntax highlighting
 syntax on
 
-" Set a marker to denote when a line should break (this is a mere suggestion
-" though)
+" Set a marker to denote when a line should break (see textwidth setting)
 highlight ColorColumn ctermbg=23 guibg=#005f5f
 set colorcolumn=80
 
@@ -448,13 +447,13 @@ set autoindent
 
 " Indentation options for js, html, and css files
 au BufNewFile,BufRead *.js, *.html, *.css
-	\ set tabstop=2
-	\ set softtabstop=2
-	\ set shiftwidth=2
-"
+			\ set tabstop=2
+			\ set softtabstop=2
+			\ set shiftwidth=2
+
 " Indentation options for python files
-" au BufNewFile,BufRead *.py
-"     \ set textwidth = 139
+au BufNewFile,BufRead *.py
+			\ set textwidth=139
 " }}}
 " -----------------------------------------------------------
 " Mappings {{{
