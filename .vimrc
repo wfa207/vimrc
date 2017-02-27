@@ -234,6 +234,16 @@ let g:syntastic_check_on_wq = 0
 
 "}}}
 " -----------------------------------------------------------
+" Ctrl-P"{{{
+
+" URL: https://github.com/ctrlpvim/ctrlp.vim
+" Author: kien (https://github.com/kien)
+" Description: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
+
+let g:ctrlp_show_hidden = 1
+
+"}}}
+" -----------------------------------------------------------
 " Ack / Silver Searcher"{{{
 
 " URL: https://github.com/mileszs/ack.vim
