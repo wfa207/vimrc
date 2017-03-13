@@ -132,8 +132,8 @@ filetype plugin indent on			" Required
 " 			   visually and open files and directories accordingly.
 
 " Start NERDTree automatically when vim starts up with no files specified
-au StdinReadPre * let s:std_in=1
-au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" au StdinReadPre * let s:std_in=1
+" au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Start NERDTree automatically when vim starts up on a directory
 au StdinReadPre * let s:std_in=1
@@ -147,6 +147,7 @@ let NERDTreeShowHidden=1
 "
 " Toggle NERDTree menu
 map <Leader>b :NERDTreeToggle<CR>
+map <Leader>n :NERDTree<CR>
 
 " NERDTree split mappings are a bit counterintuitive (I decided to change them
 " to v and s for vertical and horizontal split, respectively)
@@ -456,13 +457,13 @@ set softtabstop=4
 set autoindent
 
 " Indentation options for js, html, and css files
-au BufNewFile,BufRead *.js, *.html, *.css
-			\ set tabstop=2
-			\ set softtabstop=2
+au BufNewFile,BufRead *.js,*.html,*.css
+			\ set tabstop=2 |
+			\ set softtabstop=2 |
 			\ set shiftwidth=2
 
 " Indentation options for python files
-au BufNewFile,BufRead *.py
+au BufNewFile,BufRead *.py,*.pyc
 			\ set textwidth=139
 " }}}
 " -----------------------------------------------------------
@@ -472,16 +473,16 @@ au BufNewFile,BufRead *.py
 " Quick Access Files
 " =============================
 "
-" Open .vimrc file in new window
-nnoremap <Leader>ev :vs ~/.vimrc<CR>
+" Open .vimrc file
+nnoremap <Leader>ev :e ~/.vimrc<CR>
 nnoremap <Leader>sv :so ~/.vimrc<CR>
 
-" Open .bashrc file in new window
-nnoremap <Leader>eb :vs ~/.bashrc<CR>
+" Open .bashrc file
+nnoremap <Leader>eb :e ~/.bashrc<CR>
 nnoremap <Leader>sb :!. ~/.bashrc<CR>
 
-" Open .tmux.conf file in new window
-nnoremap <Leader>et :vs ~/.tmux.conf<CR>
+" Open .tmux.conf file
+nnoremap <Leader>et :e ~/.tmux.conf<CR>
 nnoremap <Leader>st :so ~/.tmux.conf<CR>
 
 " =============================
