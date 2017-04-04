@@ -35,6 +35,19 @@ set splitright
 set splitbelow
 " }}}
 " -----------------------------------------------------------
+" Helper Functions {{{
+
+" Helpful functions that are mapped to specific keys; see "Mappings"
+function! NumberToggle()
+	if(&relativenumber == 1)
+		set norelativenumber
+	else
+		set relativenumber
+	endif
+endfunc
+
+" }}}
+" -----------------------------------------------------------
 " Vundle"{{{
 
 " URL: https://github.com/VundleVim/Vundle.vim
@@ -257,7 +270,7 @@ if executable('ag')
 endif
 
 " Shortcut to access Ack; trailing space needed
-nnoremap <Leader>fa :Ack 
+nnoremap <Leader>fa :Ack! 
 " }}}
 " -----------------------------------------------------------
 " SuperTab"{{{
@@ -318,7 +331,7 @@ syntax on
 
 " Set a marker to denote when a line should break (see textwidth setting)
 highlight ColorColumn ctermbg=23 guibg=#005f5f
-set colorcolumn=80
+set colorcolumn=140
 
 " Highlight line that the cursor is currently on
 set cursorline
@@ -451,7 +464,10 @@ set pastetoggle=<F11>
 " four characters wide for all files, unless otherwise specified
 set encoding=utf-8
 set shiftwidth=4
-set textwidth=79
+" set textwidth=79
+" set wrapmargin=79
+set textwidth=0
+set wrapmargin=0
 set tabstop=4
 set softtabstop=4
 set autoindent
@@ -464,7 +480,7 @@ au BufNewFile,BufRead *.js,*.html,*.css
 
 " Indentation options for python files
 au BufNewFile,BufRead *.py,*.pyc
-			\ set textwidth=139
+			\ set textwidth=0
 " }}}
 " -----------------------------------------------------------
 " Mappings {{{
@@ -506,11 +522,30 @@ nnoremap <Leader>vi :PluginInstall<CR>
 " Update plugins via Vundle
 nnoremap <Leader>vu :PluginUpdate<CR>
 
+" Clean plugins via Vundle
+nnoremap <Leader>vc :BundleClean<CR>
+
 " Toggle line numbers
 nnoremap <Leader>3 :set invnumber<CR>
 
 " Ensure Enter inserts new line
 imap <CR> <CR>
+
+" Toggle line numbers between absolute and relative
+nnoremap <C-m> :call NumberToggle()<cr>
+
+" Easier navigation between panes
+" Navigate right
+nnoremap <C-l> <C-w>l
+
+" Navigate left
+nnoremap <C-l> <C-w>h
+
+" Navigate up
+nnoremap <C-l> <C-w>k
+
+" Navigate down
+nnoremap <C-l> <C-w>j
 
 " =============================
 " GitHub mappings
