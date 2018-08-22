@@ -6,7 +6,7 @@
 "              on this file is still a good idea.
 
 " -----------------------------------------------------------
-" Features {{{
+" Features
 "
 " These options and commands enable some very useful features in Vim, that
 " no user should have to live without.
@@ -33,9 +33,9 @@ filetype off
 " bottom (depending on how I choose to split) of the active window
 set splitright
 set splitbelow
-" }}}
+"
 " -----------------------------------------------------------
-" Helper Functions {{{
+" Helper Functions
 
 " Helpful functions that are mapped to specific keys; see "Mappings"
 function! NumberToggle()
@@ -46,9 +46,9 @@ function! NumberToggle()
 	endif
 endfunc
 
-" }}}
+"
 " -----------------------------------------------------------
-" Vundle"{{{
+" Vundle"
 
 " URL: https://github.com/VundleVim/Vundle.vim
 " Author: Ryan L McIntyre (https://github.com/ryanoasis)
@@ -111,11 +111,20 @@ Plugin 'christoomey/vim-tmux-navigator'
 " Airline: A more informative status bar (current venv, git branch, etc.)
 Plugin 'vim-airline/vim-airline'
 
+" VimFugitive: Integration between git and ViIntegration between git and VimPlugin
+Plugin 'tpope/vim-fugitive'
+
 " Airline_themes: Themes for the Airline plugin
 Plugin 'vim-airline/vim-airline-themes'
 
 " Solarized_Theme: Theme developed by Ethan Schoonover
 Plugin 'altercation/vim-colors-solarized'
+
+" SimplyFold: Help with indentation-based code folding
+Plugin 'tmhedberg/SimpylFold'
+
+" Flake8 Integration: Flake 8
+Plugin 'nvie/vim-flake8'
 
 " All plugins must be added before the following line
 call vundle#end()					" Required
@@ -135,9 +144,9 @@ filetype plugin indent on			" Required
 
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-"}}}
+"
 " -----------------------------------------------------------
-" NERDTree"{{{
+" NERDTree"
 
 " URL: https://github.com/scrooloose/nerdtree
 " Author: Martin Grenfell (https://github.com/scrooloose)
@@ -170,9 +179,12 @@ let g:NERDTreeMapOpenVSplit='v'
 " Unmap Jump to Sibling to prevent overriding of bindings above
 let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
-"}}}
+
+" Hide .pyc files
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+"
 " -----------------------------------------------------------
-" NERDCommenter"{{{
+" NERDCommenter"
 
 " URL: https://github.com/scrooloose/nerdcommenter
 " Author: Martin Grenfell (https://github.com/scrooloose)
@@ -192,9 +204,9 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Toggle comment
 map <Leader>  <plug>NERDCommenterToggle
-"}}}
+"
 " -----------------------------------------------------------
-" YouCompleteMe"{{{
+" YouCompleteMe"
 
 " URL: https://github.com/Valloric/YouCompleteMe
 " Author: Val Markovic (https://github.com/Valloric)
@@ -227,18 +239,18 @@ let g:ycm_key_list_select_completion = ['<C-J>', '<Down>']
 
 " Select previous completion
 let g:ycm_key_list_previous_completion = ['<C-K>', '<Up>']
-"}}}
+"
 " -----------------------------------------------------------
-" Syntastic"{{{
+" Syntastic"
 
 " URL: https://github.com/vim-syntastic/syntastic
 " Author: Martin Grenfell (https://github.com/scrooloose)
 " Description: Syntax checker plugin
 
 " Default settings recommended by syntastic contributors
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 let g:syntastic_loc_list_height=5
 let g:syntastic_always_populate_loc_list = 1
@@ -246,9 +258,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-"}}}
+"
 " -----------------------------------------------------------
-" Ctrl-P"{{{
+" Ctrl-P"
 
 " URL: https://github.com/ctrlpvim/ctrlp.vim
 " Author: kien (https://github.com/kien)
@@ -256,9 +268,9 @@ let g:syntastic_check_on_wq = 0
 
 let g:ctrlp_show_hidden = 1
 
-"}}}
+"
 " -----------------------------------------------------------
-" Ack / Silver Searcher"{{{
+" Ack / Silver Searcher"
 
 " URL: https://github.com/mileszs/ack.vim
 " Author: Miles Z. Sterrett (https://github.com/mileszs)
@@ -271,9 +283,9 @@ endif
 
 " Shortcut to access Ack; trailing space needed
 nnoremap <Leader>fa :Ack! 
-" }}}
+"
 " -----------------------------------------------------------
-" SuperTab"{{{
+" SuperTab"
 
 " URL: https://github.com/ervandew/supertab
 " Author: Eric Van Dewoestine (https://github.com/ervandew)
@@ -282,9 +294,9 @@ nnoremap <Leader>fa :Ack!
 
 " Supertab's default completion selection should be YouCompleteMe's
 let g:SuperTabDefaultCompletionType = '<C-J>'
-"}}}
+"
 " -----------------------------------------------------------
-" UltiSnips"{{{
+" UltiSnips"
 
 " URL: https://github.com/SirVer/ultisnips
 " Author: Holger Rapp (https://github.com/SirVer)
@@ -293,15 +305,15 @@ let g:SuperTabDefaultCompletionType = '<C-J>'
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-J>"
 let g:UltiSnipsJumpBackwardTrigger="<C-K>"
-"}}}
+"
 " -----------------------------------------------------------
-" Vim Multiple Cursor"{{{
+" Vim Multiple Cursor"
 
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
-" }}}
+"
 " -----------------------------------------------------------
-" Display"{{{
+" Display"
 
 " Colorscheme
 set background=dark
@@ -343,9 +355,9 @@ match ExtraWhitespace /\s\+$/
 " By default, Vim detects *.md files as Modula-2 files; this line forces all
 " *.md files to be read as markdown
 au BufNewFile,BufRead *.md set filetype=markdown
-" }}}
+"
 " -----------------------------------------------------------
-" Must-Have Options {{{
+" Must-Have Options
 
 " These are highly recommended options.
 
@@ -393,10 +405,11 @@ set incsearch
 " Foldmethod controls how lines are folded in vim. Currently, we are setting
 " the foldmethod to marker, which gives us a way of sharing our code folds
 " with others
-set foldmethod=marker
-" }}}
+set foldmethod=indent
+set foldlevel=99
+"
 " -----------------------------------------------------------
-" Usability options {{{
+" Usability options
 
 " These are options that users frequently set in their .vimrc. Some of them
 " change Vim's behaviour in ways which deviate from the true Vi way, but
@@ -447,6 +460,7 @@ set cmdheight=2
 
 " Display line numbers on the left
 set number
+set relativenumber
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout timeoutlen=1000 ttimeoutlen=200
@@ -456,9 +470,9 @@ set clipboard=unnamed
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
-" }}}
+"
 " -----------------------------------------------------------
-" Indentation Options "{{{
+" Indentation Options "
 
 " Indentation settings for using hard tabs for indent. Display tabs as
 " four characters wide for all files, unless otherwise specified
@@ -474,16 +488,23 @@ set autoindent
 
 " Indentation options for js, html, and css files
 au BufNewFile,BufRead *.js,*.html,*.css
-			\ set tabstop=2 |
-			\ set softtabstop=2 |
-			\ set shiftwidth=2
+			\ set tabstop=4 |
+			\ set softtabstop=4 |
+			\ set shiftwidth=4
 
 " Indentation options for python files
 au BufNewFile,BufRead *.py,*.pyc
-			\ set textwidth=0
-" }}}
+			\ set textwidth=79 |
+			\ set tabstop=4 |
+			\ set softtabstop=4 |
+			\ set shiftwidth=4 |
+			\ set textwidth=79 |
+			\ set expandtab |
+			\ set autoindent |
+			\ set fileformat=unix
+"
 " -----------------------------------------------------------
-" Mappings {{{
+" Mappings
 
 " =============================
 " Quick Access Files
@@ -539,25 +560,19 @@ nnoremap <C-m> :call NumberToggle()<cr>
 nnoremap <C-l> <C-w>l
 
 " Navigate left
-nnoremap <C-l> <C-w>h
+nnoremap <C-h> <C-w>h
 
 " Navigate up
-nnoremap <C-l> <C-w>k
+nnoremap <C-k> <C-w>k
 
 " Navigate down
-nnoremap <C-l> <C-w>j
+nnoremap <C-j> <C-w>j
 
 " =============================
-" GitHub mappings
+" Git mappings -- using VimFugitive
 " =============================
 
 " Add all files to git stage
-nnoremap <Leader>ga :!git add -A<CR>
-
-" Commit files (message must be entered)
-nnoremap <Leader>gm :!git commit -m
-
-" Push changes to github
-nnoremap <Leader>gp :!git push<CR>
-" }}}
+nnoremap <Leader>gs :Gstatus<CR>
+"
 " -----------------------------------------------------------
