@@ -13,6 +13,7 @@ This vimrc file started off with just basic features and preferences that I wish
 2) Create a symbolic link from where you cloned this repo to the `.vimrc` file in your home directory (the example below assumes you are running bash on OS X)
 
 `$ ln -s ~/.vim-config/.vimrc ~/.vimrc`
+`$ ln -s ~/.vim-config/.ackrc ~/.ackrc`
 
 3) Install Plugins by running `:PluginInstall` in Vim
 

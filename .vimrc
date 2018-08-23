@@ -6,7 +6,7 @@
 "              on this file is still a good idea.
 
 " -----------------------------------------------------------
-" Features"{{{
+" Features {{{
 "
 " These options and commands enable some very useful features in Vim, that
 " no user should have to live without.
@@ -35,7 +35,7 @@ set splitright
 set splitbelow
 ""}}}
 " -----------------------------------------------------------
-" Helper Functions"{{{
+" Helper Functions {{{
 
 " Helpful functions that are mapped to specific keys; see "Mappings"
 function! NumberToggle()
@@ -48,7 +48,7 @@ endfunc
 
 ""}}}
 " -----------------------------------------------------------
-" Vundle""{{{
+" Vundle {{{
 
 " URL: https://github.com/VundleVim/Vundle.vim
 " Author: Ryan L McIntyre (https://github.com/ryanoasis)
@@ -87,13 +87,19 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'Valloric/YouCompleteMe'
 
 " Syntastic: A popular syntax checker
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
+
+" Ale: An asynchronous syntax checker
+Plugin 'w0rp/ale'
 
 " CtrlP: Full-path fuzzy file, buffer, mru, tab... finder for Vim
 Plugin 'ctrlpvim/ctrlp.vim'
 
 " Ack: File-search plugin for Vim
 Plugin 'mileszs/ack.vim'
+
+" Async Run: Run scripts asynchronously in Vim
+Plugin 'skywind3000/asyncrun.vim'
 
 " Supertab: Supertab is a vim plugin which allows you to use <Tab> for all
 " your insert completion needs
@@ -126,6 +132,15 @@ Plugin 'tmhedberg/SimpylFold'
 " Flake8 Integration: Flake 8
 Plugin 'nvie/vim-flake8'
 
+" Javascript Vim: Syntax highlighting for JS
+Plugin 'pangloss/vim-javascript'
+
+" Vim JSX: JSX syntax highlighting
+Plugin 'mxw/vim-jsx'
+
+" Emmet VIM: JSX Autocomplete
+Plugin 'mattn/emmet-vim'
+
 " All plugins must be added before the following line
 call vundle#end()					" Required
 filetype plugin indent on			" Required
@@ -146,7 +161,7 @@ filetype plugin indent on			" Required
 " Put your non-Plugin stuff after this line
 ""}}}
 " -----------------------------------------------------------
-" NERDTree""{{{
+" NERDTree {{{
 
 " URL: https://github.com/scrooloose/nerdtree
 " Author: Martin Grenfell (https://github.com/scrooloose)
@@ -184,7 +199,7 @@ let g:NERDTreeMapJumpPrevSibling=''
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 ""}}}
 " -----------------------------------------------------------
-" NERDCommenter""{{{
+" NERDCommenter {{{
 
 " URL: https://github.com/scrooloose/nerdcommenter
 " Author: Martin Grenfell (https://github.com/scrooloose)
@@ -206,7 +221,7 @@ let g:NERDTrimTrailingWhitespace = 1
 map <Leader>  <plug>NERDCommenterToggle
 ""}}}
 " -----------------------------------------------------------
-" YouCompleteMe""{{{
+" YouCompleteMe {{{
 
 " URL: https://github.com/Valloric/YouCompleteMe
 " Author: Val Markovic (https://github.com/Valloric)
@@ -232,7 +247,7 @@ if 'VIRTUAL_ENV' in os.environ:
 EOF
 
 " Mapping for GoTo Definition
-map <Leader>gd  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" map <Leader>gd  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Select next completion
 let g:ycm_key_list_select_completion = ['<C-J>', '<Down>']
@@ -241,7 +256,22 @@ let g:ycm_key_list_select_completion = ['<C-J>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-K>', '<Up>']
 ""}}}
 " -----------------------------------------------------------
-" Syntastic""{{{
+" Ale {{{
+
+" URL: https://github.com/w0rp/ale
+" Author: w0rp (https://github.com/w0rp)
+" Description: Syntax checker plugin
+
+" Default settings recommended by syntastic contributors
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+
+" Mapping for GoTo Definition
+map <Leader>gd  :ALEGoToDefinition<CR>
+
+""}}}
+" -----------------------------------------------------------
+" Syntastic {{{
 
 " URL: https://github.com/vim-syntastic/syntastic
 " Author: Martin Grenfell (https://github.com/scrooloose)
@@ -258,9 +288,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-"
+""}}}
 " -----------------------------------------------------------
-" Ctrl-P"
+" Ctrl-P {{{
 
 " URL: https://github.com/ctrlpvim/ctrlp.vim
 " Author: kien (https://github.com/kien)
@@ -268,9 +298,9 @@ let g:syntastic_check_on_wq = 0
 
 let g:ctrlp_show_hidden = 1
 
-""}}}
+"""}}}
 " -----------------------------------------------------------
-" Ack / Silver Searcher""{{{
+" Ack / Silver Searcher {{{
 
 " URL: https://github.com/mileszs/ack.vim
 " Author: Miles Z. Sterrett (https://github.com/mileszs)
@@ -490,7 +520,8 @@ set autoindent
 au BufNewFile,BufRead *.js,*.html,*.css
 			\ set tabstop=4 |
 			\ set softtabstop=4 |
-			\ set shiftwidth=4
+			\ set shiftwidth=4 |
+			\ set expandtab
 
 " Indentation options for python files
 au BufNewFile,BufRead *.py,*.pyc
