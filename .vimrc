@@ -572,7 +572,7 @@ nnoremap <Leader>3 :set invnumber<CR>
 imap <CR> <CR>
 
 " Toggle line numbers between absolute and relative
-nnoremap <C-m> :call NumberToggle()<cr>
+nnoremap <C-a> :call NumberToggle()<CR>
 
 " Easier navigation between panes
 " Navigate right
