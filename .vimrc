@@ -80,10 +80,8 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'w0rp/ale'
 
 " Fzf: Full-path fuzzy file, buffer, mru, tab... finder for Vim
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-" Ack: File-search plugin for Vim
-Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
+Plug 'junegunn/fzf.vim'
 
 " Async Run: Run scripts asynchronously in Vim
 Plug 'skywind3000/asyncrun.vim'
@@ -290,6 +288,12 @@ map <Leader>gd  :ALEGoToDefinition<CR>
 " URL: https://github.com/junegunn/fzf.vim
 " Author: Junegunn Choi (https://github.com/junegunn)
 " Description: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
+
+let g:fzf_action = {
+  \ 'ctrl-h': 'split',
+  \}
+
+let g:fzf_layout = { 'down': '~20%' }
 
 nnoremap <C-p> :Files<CR>
 
