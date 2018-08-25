@@ -48,10 +48,15 @@ Plugin that mimics Sublime Text's multiple selection functionality, providing an
 
 Plugin that corrects for Vim's native autoindent feature
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
 ###[YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
 
 Python autocomplete plugin built on top of jedi
 
+>>>>>>> ad535ea... * Re-enable YouCompleteMe for drop-down suggestions
 ###[Syntastic](https://github.com/vim-syntastic/syntastic)
 
 A popular syntax checker
@@ -64,6 +69,10 @@ A fuzzy search plugin that can search through files, buffers, etc.
 
 Plugin that allows users to run their favorite search tools in Vim
 
+<<<<<<< HEAD
+=======
+>>>>>>> parent of a45d8d6... * Removed YouCompleteMe options from vimrc
+>>>>>>> ad535ea... * Re-enable YouCompleteMe for drop-down suggestions
 ###[Supertab](https://github.com/ervandew/supertab)
 
 Plugin that allows users to use <Tab> for all autocompletion / insertion needs

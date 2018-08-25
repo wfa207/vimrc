@@ -213,6 +213,19 @@ let g:NERDTrimTrailingWhitespace = 1
 noremap <Leader><space> :call NERDComment(0, "toggle")<CR>
 ""}}}
 " -----------------------------------------------------------
+" Emmet {{{
+
+" URL: https://github.com/mattn/emmet-vim
+" Author: mattn (https://github.com/mattn)
+" Description: Emmet integration with Vim
+
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+\}"
+""}}}
+" -----------------------------------------------------------
 " YouCompleteMe {{{
 
 " URL: https://github.com/Valloric/YouCompleteMe
@@ -223,23 +236,6 @@ noremap <Leader><space> :call NERDComment(0, "toggle")<CR>
 
 " Ensure autocomplete window disappears once it is no longer in use
 let g:ycm_autoclose_preview_window_after_completion=1
-
-" By default, VIM and YouCompleteMe are not aware of the virtualenv; the
-" following code detects if a virtualenv is running and switches to the active
-" virtualenv with the correct system path so YouCompleteMe finds the right site
-" packages
-py << EOF
-import os
-import sys
-
-if 'VIRTUAL_ENV' in os.environ:
-	project_base_dir = os.environ['VIRTUAL_ENV']
-	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-	execfile(activate_this, dict(__file__=activate_this))
-EOF
-
-" Mapping for GoTo Definition
-" map <Leader>gd  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Select next completion
 let g:ycm_key_list_select_completion = ['<C-J>', '<Down>']
