@@ -21,6 +21,9 @@ mapc
 
 let mapleader=","
 
+" Turn on true colors in terminal
+set termguicolors
+
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
@@ -96,9 +99,6 @@ Plug 'SirVer/ultisnips'
 " Vim_Snippets: Collection of snippets (used with UltiSnips)
 Plug 'honza/vim-snippets'
 
-" Vim_Tmux_Navigator: Easier navigation between Vim and Tmux (without prefix)
-Plug 'christoomey/vim-tmux-navigator'
-
 " Airline: A more informative status bar (current venv, git branch, etc.)
 Plug 'vim-airline/vim-airline'
 
@@ -109,7 +109,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
 
 " Solarized_Theme: Theme developed by Ethan Schoonover
-Plug 'altercation/vim-colors-solarized'
+Plug 'nightsense/snow'
 
 " SimpylFold: Help with indentation-based code folding
 Plug 'tmhedberg/SimpylFold'
@@ -328,50 +328,6 @@ let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 ""}}}
 " -----------------------------------------------------------
-" Display {{{
-
-" Colorscheme
-set background=dark
-colorscheme solarized
-
-" =============================
-" Airline Configuration
-" =============================
-
-" Enable Powerline fonts for more aesthetic appearance
-let g:airline_powerline_fonts=1
-
-" Smarter tab line allows for display of buffers
-let g:airline#extensions#tabline#enabled=1
-
-" Allow space after tabs but no in between them
-let g:airline#extensions#whitespace#mixed_indent_algo=1
-
-" Airline theme
-let g:airline_theme='solarized'
-
-" Enable better syntax highlighting for Python
-let python_highlight_all=1
-
-" Enable syntax highlighting
-syntax on
-
-" Set a marker to denote when a line should break (see textwidth setting)
-highlight ColorColumn ctermbg=23 guibg=#005f5f
-set colorcolumn=140
-
-" Highlight line that the cursor is currently on
-set cursorline
-
-" Flag excess whitespace
-highlight ExtraWhitespace ctermbg=190 guibg=#dfff00
-match ExtraWhitespace /\s\+$/
-
-" By default, Vim detects *.md files as Modula-2 files; this line forces all
-" *.md files to be read as markdown
-au BufNewFile,BufRead *.md set filetype=markdown
-""}}}
-" -----------------------------------------------------------
 " Must-Have Options"{{{
 
 " These are highly recommended options.
@@ -520,6 +476,50 @@ au BufNewFile,BufRead *.py,*.pyc
 			\ set fileformat=unix |
             \ setlocal foldmethod=indent |
             \ setlocal foldlevel=99
+""}}}
+" -----------------------------------------------------------
+" Display {{{
+
+" Colorscheme
+colorscheme snow
+set background=dark
+
+" =============================
+" Airline Configuration
+" =============================
+
+" Enable Powerline fonts for more aesthetic appearance
+let g:airline_powerline_fonts=1
+
+" Smarter tab line allows for display of buffers
+let g:airline#extensions#tabline#enabled=1
+
+" Allow space after tabs but no in between them
+let g:airline#extensions#whitespace#mixed_indent_algo=1
+
+" Airline theme
+let g:airline_theme='snow_dark'
+
+" Enable better syntax highlighting for Python
+let python_highlight_all=1
+
+" Enable syntax highlighting
+syntax on
+
+" Set a marker to denote when a line should break (see textwidth setting)
+highlight ColorColumn ctermbg=23 guibg=#005f5f
+set colorcolumn=140
+
+" Highlight line that the cursor is currently on
+set cursorline
+
+" Flag excess whitespace
+highlight ExtraWhitespace ctermbg=190 guibg=#dfff00
+match ExtraWhitespace /\s\+$/
+
+" By default, Vim detects *.md files as Modula-2 files; this line forces all
+" *.md files to be read as markdown
+au BufNewFile,BufRead *.md set filetype=markdown
 ""}}}
 " -----------------------------------------------------------
 " Mappings {{{
