@@ -296,23 +296,9 @@ let g:fzf_action = {
 let g:fzf_layout = { 'down': '~20%' }
 
 nnoremap <C-p> :Files<CR>
+nnoremap <Leader>fa :Ag 
 
 """}}}
-" -----------------------------------------------------------
-" Ack / Silver Searcher {{{
-
-" URL: https://github.com/mileszs/ack.vim
-" Author: Miles Z. Sterrett (https://github.com/mileszs)
-" Description: Allows users to run their favorite search tool from Vim,
-" 			   with an enhanced results list
-
-if executable('ag')
-	let g:ackprg='ag --vimgrep'
-endif
-
-" Shortcut to access Ack; trailing space needed
-nnoremap <Leader>fa :Ack! 
-""}}}
 " -----------------------------------------------------------
 " SuperTab {{{
 

@@ -51,10 +51,6 @@ Plugin that corrects for Vim's native autoindent feature
 
 Python autocomplete plugin built on top of jedi
 
-###[Ack](https://github.com/mileszs/ack.vim)
-
-Plugin that allows users to run their favorite search tools in Vim
-
 ###[Supertab](https://github.com/ervandew/supertab)
 
 Plugin that allows users to use <Tab> for all autocompletion / insertion needs
