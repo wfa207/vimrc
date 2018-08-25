@@ -113,7 +113,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Solarized_Theme: Theme developed by Ethan Schoonover
 Plug 'altercation/vim-colors-solarized'
 
-" SimplyFold: Help with indentation-based code folding
+" SimpylFold: Help with indentation-based code folding
 Plug 'tmhedberg/SimpylFold'
 
 " Flake8 Integration: Flake 8
@@ -301,7 +301,7 @@ endif
 nnoremap <Leader>fa :Ack! 
 ""}}}
 " -----------------------------------------------------------
-" SuperTab""{{{
+" SuperTab {{{
 
 " URL: https://github.com/ervandew/supertab
 " Author: Eric Van Dewoestine (https://github.com/ervandew)
@@ -312,7 +312,7 @@ nnoremap <Leader>fa :Ack!
 let g:SuperTabDefaultCompletionType = '<C-J>'
 ""}}}
 " -----------------------------------------------------------
-" UltiSnips""{{{
+" UltiSnips {{{
 
 " URL: https://github.com/SirVer/ultisnips
 " Author: Holger Rapp (https://github.com/SirVer)
@@ -323,13 +323,13 @@ let g:UltiSnipsJumpForwardTrigger="<C-J>"
 let g:UltiSnipsJumpBackwardTrigger="<C-K>"
 ""}}}
 " -----------------------------------------------------------
-" Vim Multiple Cursor""{{{
+" Vim Multiple Cursor {{{
 
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 ""}}}
 " -----------------------------------------------------------
-" Display""{{{
+" Display {{{
 
 " Colorscheme
 set background=dark
@@ -425,7 +425,7 @@ set foldmethod=marker
 " set foldlevel=99
 ""}}}
 " -----------------------------------------------------------
-" Usability options"{{{
+" Usability options {{{
 
 " These are options that users frequently set in their .vimrc. Some of them
 " change Vim's behaviour in ways which deviate from the true Vi way, but
@@ -488,7 +488,7 @@ set clipboard=unnamed
 set pastetoggle=<F11>
 ""}}}
 " -----------------------------------------------------------
-" Indentation Options ""{{{
+" Indentation Options {{{
 
 " Indentation settings for using hard tabs for indent. Display tabs as
 " four characters wide for all files, unless otherwise specified
@@ -523,7 +523,7 @@ au BufNewFile,BufRead *.py,*.pyc
             \ setlocal foldlevel=99
 ""}}}
 " -----------------------------------------------------------
-" Mappings"{{{
+" Mappings {{{
 
 " =============================
 " Quick Access Files
@@ -586,12 +586,5 @@ nnoremap <C-k> <C-w>k
 
 " Navigate down
 nnoremap <C-j> <C-w>j
-
-" =============================
-" Git mappings -- using VimFugitive
-" =============================
-
-" Add all files to git stage
-nnoremap <Leader>gs :Gstatus<CR>
 ""}}}
 " -----------------------------------------------------------
