@@ -253,28 +253,27 @@ let g:ycm_key_list_previous_completion = ['<C-K>', '<Up>']
 " Default settings recommended by syntastic contributors
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
+let g:ale_linters = {
+			\ 'python': ['pyls']
+			\}
+
+" By default, VIM and python-language-server (pyls) are not aware of the
+" virtualenv; the following code detects if a virtualenv is running and
+" switches to the active virtualenv with the correct system path so
+" python-language-server finds the right site packages
+
+py << EOF
+import os
+import sys
+
+if 'VIRTUAL_ENV' in os.environ:
+	project_base_dir = os.environ['VIRTUAL_ENV']
+	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+	execfile(activate_this, dict(__file__=activate_this))
+EOF
 
 " Mapping for GoTo Definition
 map <Leader>gd  :ALEGoToDefinition<CR>
-
-""}}}
-" -----------------------------------------------------------
-" Syntastic {{{
-
-" URL: https://github.com/vim-syntastic/syntastic
-" Author: Martin Grenfell (https://github.com/scrooloose)
-" Description: Syntax checker plugin
-
-" Default settings recommended by syntastic contributors
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_loc_list_height=5
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 ""}}}
 " -----------------------------------------------------------
