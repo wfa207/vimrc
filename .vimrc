@@ -148,6 +148,15 @@ call plug#end()   					" Required
 
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+"
+" Install plugins via Vim-Plug
+nnoremap <Leader>vi :PlugInstall<CR>
+
+" Update plugins via Vim-Plug
+nnoremap <Leader>vu :PlugUpdate<CR>
+
+" Clean plugins via Vim-Plug
+nnoremap <Leader>vc :PlugClean<CR>
 ""}}}
 " -----------------------------------------------------------
 " NERDTree {{{
@@ -555,15 +564,6 @@ nnoremap <C-W><C-W> :q<CR>
 
 " Open a new tab
 nnoremap <C-T> :tabnew<CR>
-
-" Install plugins via Vim-Plug
-nnoremap <Leader>vi :PlugInstall<CR>
-
-" Update plugins via Vim-Plug
-nnoremap <Leader>vu :PlugUpdate<CR>
-
-" Clean plugins via Vim-Plug
-nnoremap <Leader>vc :PlugClean<CR>
 
 " Toggle line numbers
 nnoremap <Leader>3 :set invnumber<CR>
