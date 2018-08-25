@@ -195,6 +195,8 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 " Author: Martin Grenfell (https://github.com/scrooloose)
 " Description: NERDCommenter provides automatic commenting capabilities in Vim
 
+filetype plugin on
+
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -208,7 +210,7 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDTrimTrailingWhitespace = 1
 
 " Toggle comment
-map <Leader>  <plug>NERDCommenterToggle
+noremap <Leader><space> :call NERDComment(0, "toggle")<CR>
 ""}}}
 " -----------------------------------------------------------
 " YouCompleteMe {{{
