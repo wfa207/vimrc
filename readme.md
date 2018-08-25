@@ -10,12 +10,11 @@ This vimrc file started off with just basic features and preferences that I wish
 
 `$ git clone https://github.com/wfa207/vimrc.git ~/.vim-config`
 
-2) Create a symbolic link from where you cloned this repo to the `.vimrc` file in your home directory (the example below assumes you are running bash on OS X)
+2) Run the bash setup script to install external libraries (i.e. Jedi, pyls, etc.):
 
-`$ ln -s ~/.vim-config/.vimrc ~/.vimrc`
-`$ ln -s ~/.vim-config/.ackrc ~/.ackrc`
+`$ . .setup.sh`
 
-3) Install Plugins by running `:PluginInstall` in Vim
+3) Install Plugins by running `:PlugInstall` in Vim
 
 ##Currently Used Plugins
 - Vundle
@@ -28,7 +27,7 @@ This vimrc file started off with just basic features and preferences that I wish
 - CtrlP
 - Airline
 
-###[Vundle](https://github.com/VundleVim/Vundle.vim)
+###[Vim-Plug](https://github.com/junegunn/vim-plug)
 
 Extension manager, based on Pathogen, for Vim that ensures all plugins and runtime files have their own private directories.
 
