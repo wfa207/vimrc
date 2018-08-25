@@ -16,6 +16,9 @@
 " sections of our mappings can use one leader, then we redefine the mapleader
 " for subsequent sections
 
+" clear all mappings before assignment
+mapc
+
 let mapleader=","
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
