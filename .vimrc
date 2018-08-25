@@ -81,7 +81,6 @@ Plug 'w0rp/ale'
 
 " Fzf: Full-path fuzzy file, buffer, mru, tab... finder for Vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 
 " Ack: File-search plugin for Vim
 Plug 'mileszs/ack.vim'
@@ -277,13 +276,13 @@ map <Leader>gd  :ALEGoToDefinition<CR>
 
 ""}}}
 " -----------------------------------------------------------
-" Ctrl-P {{{
+" Fzf {{{
 
-" URL: https://github.com/ctrlpvim/ctrlp.vim
-" Author: kien (https://github.com/kien)
+" URL: https://github.com/junegunn/fzf.vim
+" Author: Junegunn Choi (https://github.com/junegunn)
 " Description: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
 
-let g:ctrlp_show_hidden = 1
+nnoremap <C-p> :Files<CR>
 
 """}}}
 " -----------------------------------------------------------

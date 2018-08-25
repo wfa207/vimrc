@@ -61,10 +61,6 @@ Python autocomplete plugin built on top of jedi
 
 A popular syntax checker
 
-###[CtrlP](https://github.com/ctrlpvim/ctrlp.vim)
-
-A fuzzy search plugin that can search through files, buffers, etc.
-
 ###[Ack](https://github.com/mileszs/ack.vim)
 
 Plugin that allows users to run their favorite search tools in Vim
