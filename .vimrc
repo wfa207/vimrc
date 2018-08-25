@@ -49,102 +49,91 @@ endfunc
 
 ""}}}
 " -----------------------------------------------------------
-" Vundle {{{
+" Vim-Plug {{{
 
-" URL: https://github.com/VundleVim/Vundle.vim
-" Author: Ryan L McIntyre (https://github.com/ryanoasis)
+" URL: https://github.com/junegunn/vim-plug
+" Author: Junegunn Choi (https://github.com/junegunn)
 " Description: A plugin manager for vim that ensures all plugins and runtime
 " 			   files have their own private directories
 
-" Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Alternatively, we can pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" Let Vundle manage Vundle (required)
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Plugins must be kept between vundle#begin/end.
+call plug#begin('~/.vim/plugged')
 
 " ==========================
 " Plugins on GitHub
 " ==========================
 " NERDTree: Explore file system visually as a tree
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " NERDCommenter: Allows for easy commenting in Vim
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " Vim_Multiple_Cursors: Enables Sublime Text-like multiple selection feature
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 
 " IndentPython: Corrects for Vim's native autoindent feature
-Plugin 'vim-scripts/indentpython.vim'
+Plug 'vim-scripts/indentpython.vim'
 
 " YouCompleteMe: Python autocomplete feature built on top of jedi
-Plugin 'Valloric/YouCompleteMe'
-
-" Syntastic: A popular syntax checker
-" Plugin 'scrooloose/syntastic'
+" Plug 'Valloric/YouCompleteMe'
 
 " Ale: An asynchronous syntax checker
-Plugin 'w0rp/ale'
+Plug 'w0rp/ale'
 
-" CtrlP: Full-path fuzzy file, buffer, mru, tab... finder for Vim
-Plugin 'ctrlpvim/ctrlp.vim'
+" Fzf: Full-path fuzzy file, buffer, mru, tab... finder for Vim
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Ack: File-search plugin for Vim
-Plugin 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim'
 
 " Async Run: Run scripts asynchronously in Vim
-Plugin 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.vim'
 
 " Supertab: Supertab is a vim plugin which allows you to use <Tab> for all
 " your insert completion needs
-Plugin 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
 " UltiSnips: Allows usage of snippets in Vim
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 
 " Vim_Snippets: Collection of snippets (used with UltiSnips)
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 " Vim_Tmux_Navigator: Easier navigation between Vim and Tmux (without prefix)
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Airline: A more informative status bar (current venv, git branch, etc.)
-Plugin 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 
 " VimFugitive: Integration between git and ViIntegration between git and VimPlugin
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Airline_themes: Themes for the Airline plugin
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 
 " Solarized_Theme: Theme developed by Ethan Schoonover
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 
 " SimplyFold: Help with indentation-based code folding
-Plugin 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold'
 
 " Flake8 Integration: Flake 8
-Plugin 'nvie/vim-flake8'
+Plug 'nvie/vim-flake8'
 
 " Javascript Vim: Syntax highlighting for JS
-Plugin 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 
 " Vim JSX: JSX syntax highlighting
-Plugin 'mxw/vim-jsx'
+Plug 'mxw/vim-jsx'
 
 " Emmet VIM: JSX Autocomplete
-Plugin 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
+
+" Editorconfig: Define local rules that your editor can acknowledge
+Plug 'editorconfig/editorconfig-vim'
 
 " All plugins must be added before the following line
-call vundle#end()					" Required
-filetype plugin indent on			" Required
+call plug#end()   					" Required
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -571,14 +560,14 @@ nnoremap <C-W><C-W> :q<CR>
 " Open a new tab
 nnoremap <C-T> :tabnew<CR>
 
-" Install plugins via Vundle
-nnoremap <Leader>vi :PluginInstall<CR>
+" Install plugins via Vim-Plug
+nnoremap <Leader>vi :PlugInstall<CR>
 
-" Update plugins via Vundle
-nnoremap <Leader>vu :PluginUpdate<CR>
+" Update plugins via Vim-Plug
+nnoremap <Leader>vu :PlugUpdate<CR>
 
-" Clean plugins via Vundle
-nnoremap <Leader>vc :BundleClean<CR>
+" Clean plugins via Vim-Plug
+nnoremap <Leader>vc :PlugClean<CR>
 
 " Toggle line numbers
 nnoremap <Leader>3 :set invnumber<CR>
