@@ -28,9 +28,7 @@ set nocompatible
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
-" This is required to be 'off' for Vundle, but is turned back on after Vundle
-" finishes running
-filetype off
+filetype on
 
 " When splitting windows, I prefer to have the new window towards the right /
 " bottom (depending on how I choose to split) of the active window
