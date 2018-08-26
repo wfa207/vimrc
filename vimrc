@@ -323,6 +323,16 @@ let g:UltiSnipsJumpForwardTrigger="<C-J>"
 let g:UltiSnipsJumpBackwardTrigger="<C-K>"
 ""}}}
 " -----------------------------------------------------------
+" Vim Fugitive {{{
+
+" URL: https://github.com/tpope/vim-fugitive
+" Author: Tim Pope (https://github.com/tpope)
+" Description: A Git wrapper for Vim
+
+" Bring up the Git Status page to interactively add / edit / commit changes
+nnoremap <Leader>gs :Gstatus<CR>
+""}}}
+" -----------------------------------------------------------
 " Vim Multiple Cursor {{{
 
 let g:multi_cursor_exit_from_visual_mode=0
@@ -536,10 +546,6 @@ nnoremap <Leader>sv :so ~/.vimrc<CR>
 " Open .bashrc file
 nnoremap <Leader>eb :e ~/.bashrc<CR>
 nnoremap <Leader>sb :!. ~/.bashrc<CR>
-
-" Open .tmux.conf file
-nnoremap <Leader>et :e ~/.tmux.conf<CR>
-nnoremap <Leader>st :so ~/.tmux.conf<CR>
 
 " =============================
 " Useful mappings
