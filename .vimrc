@@ -77,7 +77,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/indentpython.vim'
 
 " YouCompleteMe: Python autocomplete feature built on top of jedi
-" Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 
 " Ale: An asynchronous syntax checker
 Plug 'w0rp/ale'
