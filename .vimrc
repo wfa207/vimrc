@@ -105,10 +105,10 @@ Plug 'vim-airline/vim-airline'
 " VimFugitive: Integration between git and ViIntegration between git and VimPlugin
 Plug 'tpope/vim-fugitive'
 
-" Airline_themes: Themes for the Airline plugin
+" Airline Themes: Themes for the Airline plugin
 Plug 'vim-airline/vim-airline-themes'
 
-" Solarized_Theme: Theme developed by Ethan Schoonover
+" Snow Theme: Theme developed by nightsense
 Plug 'nightsense/snow'
 
 " SimpylFold: Help with indentation-based code folding
