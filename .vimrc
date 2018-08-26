@@ -260,7 +260,8 @@ let g:ycm_key_list_previous_completion = ['<C-K>', '<Up>']
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_linters = {
-			\ 'python': ['pyls']
+			\ 'python': ['pyls'],
+			\ 'javascript': ['tsserver']
 			\}
 
 " By default, VIM and python-language-server (pyls) are not aware of the
