@@ -91,7 +91,7 @@ Plug 'skywind3000/asyncrun.vim'
 
 " Supertab: Supertab is a vim plugin which allows you to use <Tab> for all
 " your insert completion needs
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 
 " UltiSnips: Allows usage of snippets in Vim
 Plug 'SirVer/ultisnips'
@@ -123,7 +123,7 @@ Plug 'pangloss/vim-javascript'
 " Vim JSX: JSX syntax highlighting
 Plug 'mxw/vim-jsx'
 
-" Emmet VIM: JSX Autocomplete
+" Emmet VIM: JSX Snippet generation
 Plug 'mattn/emmet-vim'
 
 " Editorconfig: Define local rules that your editor can acknowledge
@@ -232,24 +232,6 @@ let g:user_emmet_settings = {
 \}"
 ""}}}
 " -----------------------------------------------------------
-" YouCompleteMe {{{
-
-" URL: https://github.com/Valloric/YouCompleteMe
-" Author: Val Markovic (https://github.com/Valloric)
-" Description: Fuzzy-search code completion engine for Vim. Python
-" 			   functionality is built-in; other languages are available but
-" 			   require plugins
-
-" Ensure autocomplete window disappears once it is no longer in use
-let g:ycm_autoclose_preview_window_after_completion=1
-
-" Select next completion
-let g:ycm_key_list_select_completion = ['<C-J>', '<Down>']
-
-" Select previous completion
-let g:ycm_key_list_previous_completion = ['<C-K>', '<Up>']
-""}}}
-" -----------------------------------------------------------
 " Ale {{{
 
 " URL: https://github.com/w0rp/ale
@@ -301,12 +283,33 @@ nnoremap <Leader>fa :Ag
 
 """}}}
 " -----------------------------------------------------------
+" YouCompleteMe {{{
+
+" URL: https://github.com/Valloric/YouCompleteMe
+" Author: Val Markovic (https://github.com/Valloric)
+" Description: Fuzzy-search code completion engine for Vim. Python
+" 			   functionality is built-in; other languages are available but
+" 			   require plugins
+
+" Ensure autocomplete window disappears once it is no longer in use
+let g:ycm_autoclose_preview_window_after_completion=1
+
+" Select next completion
+let g:ycm_key_list_select_completion = ['<C-J>', '<Down>']
+
+" Select previous completion
+let g:ycm_key_list_previous_completion = ['<C-K>', '<Up>']
+
+
+""}}}
+" -----------------------------------------------------------
 " SuperTab {{{
 
 " URL: https://github.com/ervandew/supertab
 " Author: Eric Van Dewoestine (https://github.com/ervandew)
 " Description: Supertab is a vim plugin which allows you to use <Tab> for all
-"			   your insert completion needs
+"			   your insert completion needs; mainly using this to get YCM
+"              to play nice with UltiSnips
 
 " Supertab's default completion selection should be YouCompleteMe's
 let g:SuperTabDefaultCompletionType = '<C-J>'
@@ -318,9 +321,10 @@ let g:SuperTabDefaultCompletionType = '<C-J>'
 " Author: Holger Rapp (https://github.com/SirVer)
 " Description: UltiSnips provides snippets in Vim
 
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<C-J>"
-let g:UltiSnipsJumpBackwardTrigger="<C-K>"
+" The below helps UltiSnips play nice with YCM
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 ""}}}
 " -----------------------------------------------------------
 " Vim Fugitive {{{
