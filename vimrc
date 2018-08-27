@@ -246,8 +246,8 @@ let g:user_emmet_settings = {
 " Description: Syntax checker plugin
 
 " Default settings recommended by syntastic contributors
-let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-let g:ale_sign_warning = '.'
+let g:ale_sign_error = '✖' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '●'
 let g:ale_linters = {
 			\ 'python': ['pyls'],
 			\ 'javascript': ['tsserver']
