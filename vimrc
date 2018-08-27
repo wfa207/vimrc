@@ -37,6 +37,13 @@ filetype on
 " bottom (depending on how I choose to split) of the active window
 set splitright
 set splitbelow
+
+" By default, vim stores swap files in the current working directory.
+" This is problematic when you have libraries that watch file changes (i.e.
+" webpack). The following line saves these files to a central directory
+" instead.
+set dir=$HOME/.vim/tmp/swap
+if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
 ""}}}
 " -----------------------------------------------------------
 " Helper Functions {{{
