@@ -285,6 +285,7 @@ map <Leader>gd  :ALEGoToDefinition<CR>
 " Custom mapping for horizontal split
 let g:fzf_action = {
   \ 'ctrl-h': 'split',
+  \ 'ctrl-v': 'vsplit',
   \}
 
 " Reserve bottom 20% of screen for fzf output
@@ -300,9 +301,16 @@ nnoremap <Leader>fa :Ag
 " Ag customization
 command! -bang -nargs=* Ag
 			\ call fzf#vim#ag(<q-args>,
+			\				  '--ignore .git --hidden',
 			\                 <bang>0 ? fzf#vim#with_preview('up:60%')
-			\                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-			\                 <bang>0)
+			\                         : fzf#vim#with_preview('right:50%', '?'))
+
+" Ctrl-P customization
+" Empty dictionary to add options (passed to fzf) later on
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({
+  \												       'source': 'ag --ignore .git --hidden -g .'
+  \												      }, 'right:50%'), <bang>0)
 
 """}}}
 " -----------------------------------------------------------
