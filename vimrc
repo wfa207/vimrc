@@ -136,6 +136,9 @@ Plug 'mattn/emmet-vim'
 " Editorconfig: Define local rules that your editor can acknowledge
 Plug 'editorconfig/editorconfig-vim'
 
+" SCSS Syntax: Syntax highlighting for SCSS files
+Plug 'cakebaker/scss-syntax.vim'
+
 " All plugins must be added before the following line
 call plug#end()   					" Required
 
@@ -279,14 +282,27 @@ map <Leader>gd  :ALEGoToDefinition<CR>
 " Author: Junegunn Choi (https://github.com/junegunn)
 " Description: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
 
+" Custom mapping for horizontal split
 let g:fzf_action = {
   \ 'ctrl-h': 'split',
   \}
 
+" Reserve bottom 20% of screen for fzf output
 let g:fzf_layout = { 'down': '~20%' }
 
+" Search for files by name
 nnoremap <C-p> :Files<CR>
+
+" Use Silver Searcher to search file content
+" Space here is intentional
 nnoremap <Leader>fa :Ag 
+
+" Ag customization
+command! -bang -nargs=* Ag
+			\ call fzf#vim#ag(<q-args>,
+			\                 <bang>0 ? fzf#vim#with_preview('up:60%')
+			\                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+			\                 <bang>0)
 
 """}}}
 " -----------------------------------------------------------
@@ -302,10 +318,10 @@ nnoremap <Leader>fa :Ag
 let g:ycm_autoclose_preview_window_after_completion=1
 
 " Select next completion
-let g:ycm_key_list_select_completion = ['<C-J>', '<Down>']
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 
 " Select previous completion
-let g:ycm_key_list_previous_completion = ['<C-K>', '<Up>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
 
 ""}}}
@@ -319,7 +335,7 @@ let g:ycm_key_list_previous_completion = ['<C-K>', '<Up>']
 "              to play nice with UltiSnips
 
 " Supertab's default completion selection should be YouCompleteMe's
-let g:SuperTabDefaultCompletionType = '<C-J>'
+let g:SuperTabDefaultCompletionType = '<C-n>'
 ""}}}
 " -----------------------------------------------------------
 " UltiSnips {{{
@@ -342,6 +358,9 @@ let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 
 " Bring up the Git Status page to interactively add / edit / commit changes
 nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>ge :Gedit<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gl :Glog<CR>
 ""}}}
 " -----------------------------------------------------------
 " Vim Multiple Cursor {{{
