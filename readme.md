@@ -39,7 +39,7 @@ Plugin that provides a way for us to explore the file system visually and open f
 
 Plugin that provides easier commenting in Vim with hotkeys
 
-###[Vim Multiple Cursors](https://github.com/terryma/vim-multiple-cursors)
+### [Vim Multiple Cursors](https://github.com/terryma/vim-multiple-cursors)
 
 Plugin that mimics Sublime Text's multiple selection functionality, providing an easy way to refactor code that contains common naming conventions
 
