@@ -121,7 +121,7 @@ Plug 'nightsense/snow'
 " SimpylFold: Help with indentation-based code folding
 Plug 'tmhedberg/SimpylFold'
 
-" Flake8 Integration: Flake 8
+" Vim Flake8: Flake 8
 Plug 'nvie/vim-flake8'
 
 " Javascript Vim: Syntax highlighting for JS
@@ -138,6 +138,9 @@ Plug 'editorconfig/editorconfig-vim'
 
 " SCSS Syntax: Syntax highlighting for SCSS files
 Plug 'cakebaker/scss-syntax.vim'
+
+" Vimux: Interact with Tmux from Vim
+Plug 'benmills/vimux'
 
 " All plugins must be added before the following line
 call plug#end()   					" Required
@@ -261,7 +264,7 @@ let g:ale_linters = {
 " switches to the active virtualenv with the correct system path so
 " python-language-server finds the right site packages
 
-py << EOF
+py3 << EOF
 import os
 import sys
 
@@ -377,6 +380,21 @@ let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 ""}}}
 " -----------------------------------------------------------
+" Vimux {{{
+
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+
+" Inspect runner pane
+map <Leader>vr :VimuxInspectRunner<CR>
+
+" Zoom the tmux runner pane
+map <Leader>vz :VimuxZoomRunner<CR>#
+""}}}
+" -----------------------------------------------------------
 " Must-Have Options"{{{
 
 " These are highly recommended options.
@@ -486,7 +504,13 @@ set relativenumber
 set notimeout ttimeout timeoutlen=1000 ttimeoutlen=200
 
 " Have Vim share its clipboard with the system clipboard
-set clipboard=unnamed
+if has("clipboard")
+  set clipboard=unnamed " copy to the system clipboard
+
+  if has("unnamedplus") " X11 support
+    set clipboard+=unnamedplus
+  endif
+endif
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
